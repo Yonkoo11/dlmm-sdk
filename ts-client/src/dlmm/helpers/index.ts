@@ -646,6 +646,21 @@ export function resetUninvolvedLiquidityParams(
   };
 }
 
+export function getParallelChunkShrinkMode(
+  chunkIndex: number,
+  chunkCount: number,
+): ShrinkMode {
+  if (chunkIndex == 0) {
+    return ShrinkMode.NoShrinkRight;
+  }
+
+  if (chunkIndex == chunkCount - 1) {
+    return ShrinkMode.NoShrinkLeft;
+  }
+
+  return ShrinkMode.NoShrinkBoth;
+}
+
 export async function chunkDepositWithRebalanceEndpoint(
   dlmm: DLMM,
   strategy: StrategyParameters,
@@ -834,19 +849,9 @@ export async function chunkDepositWithRebalanceEndpoint(
       slippagePercentage,
     );
 
-    let shrinkMode: ShrinkMode;
-
-    if (isParallel) {
-      if (i == 0) {
-        shrinkMode = ShrinkMode.NoShrinkRight;
-      } else if (i == chunkBinRange.length - 1) {
-        shrinkMode = ShrinkMode.NoShrinkLeft;
-      } else {
-        shrinkMode = ShrinkMode.NoShrinkBoth;
-      }
-    } else {
-      shrinkMode = ShrinkMode.ShrinkBoth;
-    }
+    const shrinkMode = isParallel
+      ? getParallelChunkShrinkMode(i, chunkedBinRange.length)
+      : ShrinkMode.ShrinkBoth;
 
     const rebalanceIx = await dlmm.program.methods
       .rebalanceLiquidity(

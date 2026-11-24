@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `chunkDepositWithRebalanceEndpoint`: the last chunk of a parallel deposit now gets `NoShrinkLeft` for any chunk count. The check compared the index with `chunkBinRange.length` (the function's arity, 3) instead of the number of chunks.
+
 ### Security
 
 ## @meteora-ag/dlmm [1.9.15]
