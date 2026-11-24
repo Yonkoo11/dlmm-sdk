@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fixed `initializePositionByOperator` passing `DEFAULT_BIN_PER_POSITION` to the program instead of the `positionWidth` it used to derive the position address, which failed the seeds check for any other width.
+
 ### Security
 
 ## @meteora-ag/dlmm [1.9.15]

@@ -7387,7 +7387,7 @@ export class DLMM {
     const initializePositionByOperatorTx = await this.program.methods
       .initializePositionByOperator(
         lowerBinId.toNumber(),
-        DEFAULT_BIN_PER_POSITION.toNumber(),
+        positionWidth.toNumber(),
         feeOwner,
         lockReleasePoint,
       )
