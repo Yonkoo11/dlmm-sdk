@@ -7381,7 +7381,7 @@ export class DLMM {
       this.lbPair.tokenXMint,
       owner,
       true,
-      this.tokenY.owner,
+      this.tokenX.owner,
     );
 
     const initializePositionByOperatorTx = await this.program.methods

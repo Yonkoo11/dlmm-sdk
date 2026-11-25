@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fixed `initializePositionByOperator` deriving the owner's token X account with the token Y program, which fails when the two mints use different token programs.
+
 ### Security
 
 ## @meteora-ag/dlmm [1.9.15]
